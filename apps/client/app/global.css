@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+
+html,body{
+  overscroll-behavior: none; 
+  @apply h-screen;
+}
+
+.app{
+  @apply h-full;
+}
+.default-cursor {
+  @apply select-none cursor-default;
+}
+.resize-cursor{
+  @apply select-none cursor-col-resize;
+}

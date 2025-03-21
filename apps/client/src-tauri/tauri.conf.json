@@ -12,9 +12,19 @@
   "app": {
     "windows": [
       {
-        "title": "client",
+        "hiddenTitle": true,
         "width": 800,
-        "height": 600
+        "height": 600,
+        "minWidth": 600,
+        "minHeight": 460,
+        "titleBarStyle": "Overlay",
+        "transparent": true,
+        "resizable": true,
+        "decorations": true,
+        "trafficLightPosition": {
+          "x": 20,
+          "y": 24
+        }
       }
     ],
     "security": {

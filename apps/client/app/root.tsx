@@ -1,5 +1,7 @@
-import type { MetaFunction } from 'react-router'
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
+import type { MetaFunction } from 'react-router';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import { TitleBar } from '~/components/ui/title-bar';
+import './global.css';
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,17 +9,17 @@ export const meta: MetaFunction = () => {
       title: 'akumanoko',
       description: 'akumanoko',
     },
-  ]
-}
+  ];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <head>
-        <meta charSet="utf-8" />
+        <meta charSet='utf-8' />
         <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
+          name='viewport'
+          content='width=device-width, initial-scale=1'
         />
         <Meta />
         <Links />
@@ -28,13 +30,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }
 
 export default function App() {
   return (
-    <div className="app">
+    <div className='app'>
+      <TitleBar />
       <Outlet />
     </div>
-  )
+  );
 }
