@@ -7,7 +7,8 @@ export interface SidebarProps {
 export function Sidebar(props: SidebarProps) {
   const { className } = props;
   return (
-    <div className={cn('sidebar pt-12 bg-gray-100 h-full', className)}>
+    <div className={cn('sidebar bg-gray-100 h-full', className)}>
+      <div data-tauri-drag-region className='h-12'></div>
       <div className='px-4'>
       </div>
     </div>

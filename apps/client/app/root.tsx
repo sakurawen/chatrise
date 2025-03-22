@@ -1,6 +1,5 @@
 import type { MetaFunction } from 'react-router';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
-import { TitleBar } from '~/components/ui/title-bar';
 import './global.css';
 
 export const meta: MetaFunction = () => {
@@ -21,6 +20,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           name='viewport'
           content='width=device-width, initial-scale=1'
         />
+        {import.meta.env.VITE_REACT_DEVTOOLS==='enable'&&import.meta.env.DEV ? (
+          <script src='http://localhost:8097'></script>
+        ):null}
         <Meta />
         <Links />
       </head>
@@ -36,7 +38,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <div className='app'>
-      <TitleBar />
       <Outlet />
     </div>
   );
