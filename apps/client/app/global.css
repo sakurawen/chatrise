@@ -3,7 +3,7 @@
 
 html,body{
   overscroll-behavior: none; 
-  @apply h-screen;
+  @apply h-screen bg-transparent;
 }
 
 .app{

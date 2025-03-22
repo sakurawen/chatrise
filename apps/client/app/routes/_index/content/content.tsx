@@ -6,7 +6,7 @@ export interface ContentProps {
 export function Content(props: ContentProps) {
   const { className } = props;
   return (
-    <div className={cn('content', className)}>
+    <div className={cn('content bg-white', className)}>
       <div data-tauri-drag-region className='content-title-bar h-12  border-b border-gray-200'>
       </div>
       <div>

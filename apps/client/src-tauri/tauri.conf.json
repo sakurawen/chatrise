@@ -10,6 +10,7 @@
     "frontendDist": "../build/client"
   },
   "app": {
+    "macOSPrivateApi": true,
     "windows": [
       {
         "hiddenTitle": true,
@@ -19,7 +20,15 @@
         "minHeight": 460,
         "titleBarStyle": "Overlay",
         "resizable": true,
+        "transparent": true,
         "decorations": true,
+        "windowEffects": {
+          "effects": [
+            "hudWindow"
+          ],
+          "color": "#EAEAEC",
+          "state": "followsWindowActiveState"
+        },
         "trafficLightPosition": {
           "x": 20,
           "y": 24
