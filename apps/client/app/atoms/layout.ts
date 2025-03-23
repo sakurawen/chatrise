@@ -12,6 +12,9 @@ export const renderSidebarWidthAtom = atom((get) => {
   const localWidth = localStorage.getItem('sidebarWidth');
   try {
     const parsedWidth = Number.parseInt(localWidth || '');
+    if (Number.isNaN(parsedWidth)) {
+      return defaultSidebarWidth;
+    }
     return parsedWidth;
   }
   catch {

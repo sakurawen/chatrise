@@ -6,10 +6,15 @@ import { Button } from '~/components/ui/button';
 export function TitleBarAction() {
   const setSidebarEnableAtom = useSetAtom(sidebarEnableAtom);
   return (
-    <div className='fixed top-[12px] left-22 z-10 '>
-      <Button size='icon' variant='ghost' onClick={() => setSidebarEnableAtom(val => !val)}>
-        <Icon icon='f7:sidebar-left' className='size-5 ' />
+    <div className='fixed top-[12px] left-[90px] z-10 '>
+      <div className='flex items-center space-x-2'>
+      <Button size='icon' variant='ghost' className='text-secondary' onClick={() => setSidebarEnableAtom(val => !val)}>
+        <Icon icon='f7:sidebar-left' className='size-[18px] ' />
       </Button>
+      <Button size='icon' variant='ghost' className='text-secondary'>
+        <Icon icon='f7:square-pencil' className='size-[18px] -translate-y-px' />
+      </Button>
+      </div>
     </div>
   );
 }

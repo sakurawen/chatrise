@@ -37,11 +37,10 @@ export function SidebarContainer({ children }: PropsWithChildren) {
     pointerDownRef.current = true;
     setPointerDown(true);
   }
-
   return (
-    <motion.div className='h-full  border-r relative  border-gray-200' style={{ width: sidebarEnable ? width : 0, left: sidebarEnable ? 0 : -width, transition: pointerDown ? 'none' : 'all 0.2s' }}>
+    <motion.div className='h-full  border-r relative  border-zinc-200' style={{ width: sidebarEnable ? width : 0, left: sidebarEnable ? 0 : -width, transition: pointerDown ? 'none' : 'all 0.2s' }}>
       {children}
-      <div onPointerDown={handlePointerDown} className='resizable-handler transition-colors h-full absolute  w-1 hover:opacity-100 active:opacity-100 opacity-0 active:w-1 bg-gray-200 top-0 right-0 active:bg-blue-500 hover:bg-blue-500  cursor-col-resize!' />
+      <div onPointerDown={handlePointerDown} className='resizable-handler transition-colors h-full absolute  w-1 hover:opacity-100 active:opacity-100 opacity-0 active:w-1 bg-zinc-200 top-0 right-0 active:bg-blue-500 hover:bg-blue-500  cursor-col-resize!' />
     </motion.div>
   );
 }
