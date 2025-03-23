@@ -9,8 +9,8 @@ addCollection(icons);
 export const meta: MetaFunction = () => {
   return [
     {
-      title: 'akumanoko',
-      description: 'akumanoko',
+      title: 'chatrise',
+      description: 'chatrise',
     },
   ];
 };
