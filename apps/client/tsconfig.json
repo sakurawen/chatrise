@@ -8,6 +8,7 @@
       "DOM.Iterable"
     ],
     "useDefineForClassFields": true,
+    "rootDirs": [".", "./.react-router/types"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
@@ -31,6 +32,7 @@
     }
   ],
   "include": [
-    "app"
+    "app/**/*",
+    ".react-router/types/**/*"
   ]
 }

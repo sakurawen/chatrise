@@ -1,4 +1,3 @@
-import type { PluginOption } from 'vite';
 import { reactRouter } from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
@@ -20,7 +19,7 @@ export default defineConfig(() => ({
         ["babel-plugin-react-compiler", ReactCompilerConfig],
       ],
     },
-  }), tailwindcss() as unknown as PluginOption],
+  }), tailwindcss()],
   clearScreen: false,
   server: {
     port: 1420,

@@ -26,11 +26,10 @@
           "effects": [
             "hudWindow"
           ],
-          "color": "#EAEAEC",
           "state": "followsWindowActiveState"
         },
         "trafficLightPosition": {
-          "x": 20,
+          "x": 18,
           "y": 24
         }
       }

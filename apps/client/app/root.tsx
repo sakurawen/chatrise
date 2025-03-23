@@ -1,6 +1,10 @@
 import type { MetaFunction } from 'react-router';
+import { icons } from '@iconify-json/f7';
+import { addCollection } from '@iconify/react';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
-import './global.css';
+import './app.css';
+
+addCollection(icons);
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,9 +24,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
           name='viewport'
           content='width=device-width, initial-scale=1'
         />
-        {import.meta.env.VITE_REACT_DEVTOOLS==='enable'&&import.meta.env.DEV ? (
-          <script src='http://localhost:8097'></script>
-        ):null}
+        {import.meta.env.VITE_REACT_DEVTOOLS === 'enable' && import.meta.env.DEV
+          ? (
+              <script src='http://localhost:8097'></script>
+            )
+          : null}
         <Meta />
         <Links />
       </head>
