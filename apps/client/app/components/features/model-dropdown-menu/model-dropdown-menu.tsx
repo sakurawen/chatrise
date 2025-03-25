@@ -25,18 +25,21 @@ export function ModelDropdownMenu(props: React.ComponentProps<typeof DropdownMen
         <div className='sticky top-0  bg-background border-b z-10 p-2 '>
           <Search placeholder='搜索模型' />
         </div>
-        {
-          modelProviders.map((provider) => {
-            return (
-              <Fragment key={provider.name}>
-                <DropdownMenuLabel>{provider.name}</DropdownMenuLabel>
-                {provider.models.map((model) => {
-                  return <DropdownMenuItem key={model.name}>{model.name}</DropdownMenuItem>;
-                })}
-              </Fragment>
-            );
-          })
-        }
+        <div className='px-2'>
+
+          {
+            modelProviders.map((provider) => {
+              return (
+                <Fragment key={provider.name}>
+                  <DropdownMenuLabel>{provider.name}</DropdownMenuLabel>
+                  {provider.models.map((model) => {
+                    return <DropdownMenuItem key={model.name}>{model.name}</DropdownMenuItem>;
+                  })}
+                </Fragment>
+              );
+            })
+          }
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
