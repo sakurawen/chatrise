@@ -3,8 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
-
 :root {
   /* colors */
   --red:#FF3B30;
@@ -66,7 +64,7 @@
   --accent:oklch(0.872 0.01 258.338);
   --accent-foreground: oklch(0.87 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.872 0.01 258.338);
+  --border: oklch(0 0 0 / 10%);
   --input: oklch(0.872 0.01 258.338);
   --ring: oklch(0.707 0.022 261.325);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -202,7 +200,6 @@
   --color-material-header-view:var(--material-header-view);
   --color-material-tooltip:var(--material-tooltip);
   --color-material-under-window-background:var(--material-under-window-background);
-
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -243,10 +240,15 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 text-primary;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+@layer utilities{
+  .backdrop-blur-material{
+    backdrop-filter: blur(20px);
   }
 }
 

@@ -17,7 +17,7 @@ export function Content(props: ContentProps) {
       className={cn('content flex-1 w-full bg-white', className)}
     >
       <div className='h-full flex flex-col'>
-        <div data-tauri-drag-region className={`content-title-bar transition-[padding] h-13 flex items-center border-b border-zinc-200 ${sidebarEnable ? 'pl-1.5' : 'pl-40'}`}>
+        <div data-tauri-drag-region className={`content-title-bar transition-[padding]  h-13 flex items-center border-b border-zinc-200 ${sidebarEnable ? 'pl-1.5' : 'pl-40'}`}>
           <ModelDropdownMenu />
         </div>
         <div className='px-3.5 max-w-5xl mx-auto flex-1'>
