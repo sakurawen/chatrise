@@ -1,9 +1,6 @@
-import type { PropsWithChildren, TextareaHTMLAttributes } from 'react';
+import type { KeyboardEvent, PropsWithChildren } from 'react';
 import { Icon } from '@iconify/react';
-import { produce } from 'immer';
-import { useAtom } from 'jotai';
-import { useRef } from 'react';
-import { chatInputAtom } from '~/atoms/chat';
+import { useActionState, useRef } from 'react';
 import { Button } from '~/components/ui/button';
 import { Textarea } from '~/components/ui/textarea';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
@@ -19,6 +16,7 @@ const CHAT_INPUT_MAX_HEIGHT = 196;
 export function ChatInput(props: ChatInputProps) {
   const { className, textareaClassName, ...restProps } = props;
   const textareaRef = useRef<React.ComponentRef<'textarea'>>(null);
+  const formRef = useRef<React.ComponentRef<'form'>>(null);
   function handleInput() {
     if (textareaRef.current) {
       textareaRef.current!.style.height = 'auto';
@@ -28,46 +26,74 @@ export function ChatInput(props: ChatInputProps) {
     }
   }
 
-  const [chatInput, setChatInput] = useAtom(chatInputAtom);
-
-  function handleInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    setChatInput(produce((draft) => {
-      draft.message = e.target.value;
-    }));
+  function handleEnter(e: KeyboardEvent<HTMLTextAreaElement>) {
+    const isEnter = e.key === 'Enter';
+    if (!isEnter) {
+      return;
+    }
+    if (!e.shiftKey && isEnter) {
+      const validValue = e.currentTarget.value.replace(/\s+/g, '');
+      if (validValue) {
+        e.preventDefault();
+        formRef.current?.requestSubmit();
+      }
+    }
   }
+
+  const [message, action] = useActionState<string, FormData>((prevState, formData) => {
+    const message = formData.get('message') as string;
+    if (!message.trim()) {
+      return prevState;
+    }
+    return prevState;
+  }, '');
 
   return (
     <div className={cn('chat-input  pt-2 px-2 pb-4', className)}>
       <div className='rounded-xl  border border-border pt-2.5 pb-1.5 px-2.5 bg-material-thick transition-[color,box-shadow]'>
-        <Textarea
-          rows={1}
-          className={cn('resize-none p-0 min-h-[2em]! ring-0! rounded-none border-none shadow-none text-base!', textareaClassName)}
-          ref={textareaRef}
-          placeholder='给<Model>发送信息'
-          onInput={handleInput}
-          onChange={handleInputChange}
-          value={chatInput.message}
-          {...restProps}
-        />
-        <div className='chat-input-actions space-x-1.5'>
-          <TooltipProvider>
-            <ActionButton tooltip='添加附件'>
-              <Icon className='size-[18px] opacity-80 ' icon='f7:paperclip' />
-            </ActionButton>
-            <ActionButton tooltip='命令中心'>
-              <Icon className='size-[18px] opacity-80 ' icon='f7:command' />
-            </ActionButton>
-            <ActionButton tooltip='联网搜索'>
-              <Icon className='size-[18px] opacity-80 ' icon='f7:globe' />
-            </ActionButton>
-            <ActionButton tooltip='Artifacts'>
-              <Icon className='size-[18px] opacity-80 ' icon='f7:layers-alt' />
-            </ActionButton>
-            <Button size='icon' variant='ghost'>
-              <Icon className='size-[18px] opacity-80 ' icon='f7:hammer' />
-            </Button>
-          </TooltipProvider>
-        </div>
+        <form action={action} ref={formRef}>
+          <Textarea
+            name='message'
+            rows={1}
+            className={cn('resize-none p-0 min-h-[2em]! ring-0! rounded-none border-none shadow-none text-base!', textareaClassName)}
+            ref={textareaRef}
+            placeholder='给<Model>发送信息'
+            defaultValue={message}
+            onInput={handleInput}
+            onKeyDown={handleEnter}
+            {...restProps}
+          />
+          <div className='chat-input-actions space-x-1.5'>
+            <TooltipProvider>
+              <div className='flex items-center justify-between'>
+                <div className='chat-input-actions-start'>
+                  <ActionButton type='button' tooltip='添加附件'>
+                    <Icon className='size-icon opacity-80 ' icon='f7:paperclip' />
+                  </ActionButton>
+                  <ActionButton type='button' tooltip='命令中心'>
+                    <Icon className='size-icon opacity-80 ' icon='f7:command' />
+                  </ActionButton>
+                  <ActionButton type='button' tooltip='联网搜索'>
+                    <Icon className='size-icon opacity-80 ' icon='f7:globe' />
+                  </ActionButton>
+                  <ActionButton type='button' tooltip='Artifacts'>
+                    <Icon className='size-icon opacity-80 ' icon='f7:layers-alt' />
+                  </ActionButton>
+                  <Button size='icon' type='button' variant='ghost'>
+                    <Icon className='size-icon opacity-80 ' icon='f7:hammer' />
+                  </Button>
+                </div>
+                <div className='chat-input-actions-end'>
+                  <ActionButton size='icon' tooltip='shift + enter 发送' type='submit' variant='ghost' className='rounded-full'>
+                    <Icon icon='f7:arrow-turn-down-left' className='size-icon' />
+                  </ActionButton>
+                </div>
+              </div>
+
+            </TooltipProvider>
+          </div>
+        </form>
+
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ export const options = {
   rules: {
     "style/semi": ["warn", "always"],
     'style/jsx-quotes': ['warn', 'prefer-single'],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off"
   }
 }
 

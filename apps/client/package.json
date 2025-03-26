@@ -28,6 +28,7 @@
     "jotai": "^2.12.2",
     "lodash-es": "^4.17.21",
     "motion": "^12.5.0",
+    "openai": "^4.89.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hotkeys-hook": "^4.6.1",

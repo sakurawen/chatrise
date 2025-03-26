@@ -236,6 +236,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --shadow-material:0px 0px 1px 0 rgba(0, 0, 0, 0.4), 0px 0px 1px 0 rgba(0, 0, 1.5, 0.3),0px 7px 22px 0 rgba(0, 0, 1.5, 0.25);
+  --spacing-icon:18px;
 }
 
 @layer base {

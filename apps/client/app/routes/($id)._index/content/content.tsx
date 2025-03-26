@@ -12,6 +12,7 @@ export interface ContentProps {
 export function Content(props: ContentProps) {
   const { className } = props;
   const sidebarEnable = useAtomValue(sidebarEnableAtom);
+
   return (
     <motion.div
       className={cn('content flex-1 w-full bg-white', className)}
