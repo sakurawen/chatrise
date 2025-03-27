@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
-import { motion } from 'motion/react';
 import { sidebarEnableAtom } from '~/atoms/layout';
-import { Chat } from '~/components/features/chat';
+import { ChatInput } from '~/components/features/chat-input';
+import { ChatMessages } from '~/components/features/chat-messages';
 import { ModelDropdownMenu } from '~/components/features/model-dropdown-menu';
 import { cn } from '~/lib/utils';
 
@@ -14,17 +14,16 @@ export function Content(props: ContentProps) {
   const sidebarEnable = useAtomValue(sidebarEnableAtom);
 
   return (
-    <motion.div
-      className={cn('content flex-1 w-full bg-white', className)}
+    <div
+      className={cn('content flex-1 h-full  w-full bg-white', className)}
     >
-      <div className='h-full flex flex-col'>
+      <div className='h-full  mx-auto flex flex-col'>
         <div data-tauri-drag-region className={`content-title-bar transition-[padding]  h-13 flex items-center border-b border-zinc-200 ${sidebarEnable ? 'pl-1.5' : 'pl-40'}`}>
           <ModelDropdownMenu />
         </div>
-        <div className='px-3.5 max-w-5xl mx-auto flex-1'>
-          <Chat />
-        </div>
+        <ChatMessages />
+        <ChatInput />
       </div>
-    </motion.div>
+    </div>
   );
 }
