@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import { Fragment } from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
+import { ScrollArea } from '~/components/ui/scroll-area';
 import { Search } from '~/components/ui/search';
 import { modelProviders } from '~/const/models';
 
@@ -19,27 +20,28 @@ export function ModelDropdownMenu(props: React.ComponentProps<typeof DropdownMen
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className=' outline-hidden! max-h-[calc(var(--radix-dropdown-menu-content-available-height)-20px)]'
+        className=' outline-hidden! overflow-hidden! h-[min(calc(var(--radix-dropdown-menu-content-available-height)-20px),800px)]'
         sideOffset={4}
       >
         <div className='sticky top-0  bg-background border-b z-10 p-2 '>
           <Search placeholder='搜索模型' />
         </div>
-        <div className='px-2'>
-
-          {
-            modelProviders.map((provider) => {
-              return (
-                <Fragment key={provider.name}>
-                  <DropdownMenuLabel>{provider.name}</DropdownMenuLabel>
-                  {provider.models.map((model) => {
-                    return <DropdownMenuItem key={model.name}>{model.name}</DropdownMenuItem>;
-                  })}
-                </Fragment>
-              );
-            })
-          }
-        </div>
+        <ScrollArea className='h-[calc(100%-50px)]'>
+          <div className='px-2'>
+            {
+              modelProviders.map((provider) => {
+                return (
+                  <Fragment key={provider.name}>
+                    <DropdownMenuLabel>{provider.name}</DropdownMenuLabel>
+                    {provider.models.map((model) => {
+                      return <DropdownMenuItem key={model.name}>{model.name}</DropdownMenuItem>;
+                    })}
+                  </Fragment>
+                );
+              })
+            }
+          </div>
+        </ScrollArea>
       </DropdownMenuContent>
     </DropdownMenu>
   );
