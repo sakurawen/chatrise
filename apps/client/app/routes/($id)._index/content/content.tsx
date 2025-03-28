@@ -12,7 +12,6 @@ export interface ContentProps {
 export function Content(props: ContentProps) {
   const { className } = props;
   const sidebarEnable = useAtomValue(sidebarEnableAtom);
-
   return (
     <div
       className={cn('content flex-1 h-full  w-full bg-white', className)}
