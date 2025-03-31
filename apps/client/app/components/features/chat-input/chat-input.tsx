@@ -1,8 +1,6 @@
-import type { KeyboardEvent, PropsWithChildren } from 'react';
 import { Icon } from '@iconify/react';
-import { useSetAtom } from 'jotai';
+import type { KeyboardEvent, PropsWithChildren } from 'react';
 import { useActionState, useRef, useState } from 'react';
-import { chatMessagesAtom } from '~/atoms/chat';
 import { Button } from '~/components/ui/button';
 import { Textarea } from '~/components/ui/textarea';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
@@ -48,7 +46,6 @@ export function ChatInput(props: ChatInputProps) {
   }
   const [isComposing, setIsComposing] = useState(false);
 
-  const setMessage = useSetAtom(chatMessagesAtom);
 
   const [inputValue, action, isPending] = useActionState<string, FormData>(async (prevState, formData) => {
     const message = formData.get('message') as string;
@@ -65,9 +62,7 @@ export function ChatInput(props: ChatInputProps) {
       messages: [{ role: 'user', content: message }],
     });
     for await (const chunk of stream) {
-      console.log({ chunk });
       if (chunk.choices[0].delta.content) {
-        setMessage(prev => prev + chunk.choices[0].delta.content);
       }
     }
     return '';
