@@ -20,23 +20,6 @@ export function ChatMessages(props: ChatMessagesProps) {
       <ScrollArea className='h-full' viewportRef={viewportRef}>
         <div className='px-3.5 w-full max-w-5xl mx-auto '>
           <p>{messages}</p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste culpa exercitationem et autem, officiis maiores velit. Quod, enim ipsum! Ullam fugit illum quidem voluptate officiis itaque ea, nostrum adipisci beatae.
         </div>
       </ScrollArea>
     </div>

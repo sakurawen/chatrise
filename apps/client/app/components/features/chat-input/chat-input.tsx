@@ -1,7 +1,7 @@
 import type { KeyboardEvent, PropsWithChildren } from 'react';
 import { Icon } from '@iconify/react';
 import { useSetAtom } from 'jotai';
-import { useActionState, useRef } from 'react';
+import { useActionState, useRef, useState } from 'react';
 import { chatMessagesAtom } from '~/atoms/chat';
 import { Button } from '~/components/ui/button';
 import { Textarea } from '~/components/ui/textarea';
@@ -31,7 +31,11 @@ export function ChatInput(props: ChatInputProps) {
 
   function handleEnter(e: KeyboardEvent<HTMLTextAreaElement>) {
     const isEnter = e.key === 'Enter';
-    if (!isEnter) {
+    if (!isEnter || isPending) {
+      return;
+    }
+    if (isComposing) {
+      e.preventDefault();
       return;
     }
     if (!e.shiftKey && isEnter) {
@@ -42,14 +46,19 @@ export function ChatInput(props: ChatInputProps) {
       }
     }
   }
+  const [isComposing, setIsComposing] = useState(false);
 
   const setMessage = useSetAtom(chatMessagesAtom);
 
-  const [inputValue, action] = useActionState<string, FormData>(async (prevState, formData) => {
+  const [inputValue, action, isPending] = useActionState<string, FormData>(async (prevState, formData) => {
     const message = formData.get('message') as string;
+    if (isPending) {
+      return '';
+    }
     if (!message.trim()) {
       return prevState;
     }
+    formRef.current?.reset();
     const stream = await openai.chat.completions.create({
       model: 'deepseek-chat',
       stream: true,
@@ -57,15 +66,27 @@ export function ChatInput(props: ChatInputProps) {
     });
     for await (const chunk of stream) {
       console.log({ chunk });
-      setMessage(prev => prev + chunk);
+      if (chunk.choices[0].delta.content) {
+        setMessage(prev => prev + chunk.choices[0].delta.content);
+      }
     }
     return '';
   }, '');
 
+  function handleCompositionStart() {
+    setIsComposing(true);
+  }
+
+  function handleCompositionEnd() {
+    setTimeout(() => {
+      setIsComposing(false);
+    }, 0);
+  }
+
   return (
-    <div className={cn('chat-input w-full  py-2.5', className)}>
+    <div className={cn('chat-input w-full py-2.5', className)}>
       <div className='px-3.5 w-full  max-w-5xl mx-auto '>
-        <div className='rounded-xl  border border-border pt-2.5 pb-1.5 px-2.5 bg-material-thick transition-[color,box-shadow]'>
+        <div className='rounded-xl  border border-border pt-2.5 pb-1.5 px-2.5 bg-material-ultrathick transition-[color,box-shadow]'>
           <form action={action} ref={formRef}>
             <Textarea
               name='message'
@@ -76,6 +97,8 @@ export function ChatInput(props: ChatInputProps) {
               defaultValue={inputValue}
               onInput={handleInput}
               onKeyDown={handleEnter}
+              onCompositionStart={handleCompositionStart}
+              onCompositionEnd={handleCompositionEnd}
               {...restProps}
             />
             <div className='chat-input-actions space-x-1.5'>
@@ -99,12 +122,11 @@ export function ChatInput(props: ChatInputProps) {
                     </Button>
                   </div>
                   <div className='chat-input-actions-end'>
-                    <ActionButton size='icon' tooltip='shift + enter 发送' type='submit' variant='ghost' className='rounded-full'>
+                    <ActionButton disabled={isPending} size='icon' tooltip='Enter 发送' type='submit' variant='ghost' className='rounded-full'>
                       <Icon icon='f7:arrow-turn-down-left' className='size-icon' />
                     </ActionButton>
                   </div>
                 </div>
-
               </TooltipProvider>
             </div>
           </form>
