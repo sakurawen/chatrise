@@ -1,18 +1,18 @@
 import { atomWithLocalForage } from '~/lib/jotai';
 
-interface ChatMessage{
-  id:string
-  threadId:string
-  content:string
-  role:string
-  status:string
-  modalParams?:Record<string,any>
-  attachments?:unknown[]
-  modal:string
-  createAt:Date
+interface ChatMessage {
+  id: string
+  threadId: string
+  content: string
+  role: string
+  status: string
+  modalParams?: Record<string, any>
+  attachments?: unknown[]
+  modal: string
+  createAt: Date
 }
 
-export const chatMessagesAtom = atomWithLocalForage<Array<ChatMessage>>('chatMessages',[]);
+export const chatMessagesAtom = atomWithLocalForage<Array<ChatMessage>>('chatMessages', []);
 
 interface ChatThread {
   id: string
