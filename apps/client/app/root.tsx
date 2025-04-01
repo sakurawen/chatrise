@@ -2,6 +2,7 @@ import type { MetaFunction } from 'react-router';
 import { icons } from '@iconify-json/f7';
 import { addCollection } from '@iconify/react';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import '~/db';
 import './app.css';
 
 addCollection(icons);

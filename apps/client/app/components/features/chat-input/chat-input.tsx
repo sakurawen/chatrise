@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
 import type { KeyboardEvent, PropsWithChildren } from 'react';
+import { Icon } from '@iconify/react';
 import { useActionState, useRef, useState } from 'react';
 import { Button } from '~/components/ui/button';
 import { Textarea } from '~/components/ui/textarea';
@@ -46,7 +46,6 @@ export function ChatInput(props: ChatInputProps) {
   }
   const [isComposing, setIsComposing] = useState(false);
 
-
   const [inputValue, action, isPending] = useActionState<string, FormData>(async (prevState, formData) => {
     const message = formData.get('message') as string;
     if (isPending) {
@@ -62,6 +61,7 @@ export function ChatInput(props: ChatInputProps) {
       messages: [{ role: 'user', content: message }],
     });
     for await (const chunk of stream) {
+      // eslint-disable-next-line no-empty
       if (chunk.choices[0].delta.content) {
       }
     }
