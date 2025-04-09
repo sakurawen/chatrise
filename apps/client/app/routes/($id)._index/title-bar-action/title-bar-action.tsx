@@ -1,11 +1,16 @@
 import { Icon } from '@iconify/react';
 import { useSetAtom } from 'jotai';
+import { useHotkeys } from 'react-hotkeys-hook';
 import { sidebarEnableAtom } from '~/atoms/layout';
 import { Button } from '~/components/ui/button';
 import { isTauri } from '~/lib/utils';
 
 export function TitleBarAction() {
   const setSidebarEnableAtom = useSetAtom(sidebarEnableAtom);
+
+  useHotkeys('alt+b,meta+b', () => {
+    setSidebarEnableAtom(val => !val);
+  });
 
   return (
     <div className={`fixed top-[12px]  z-10  ${isTauri ? 'left-[90px]' : 'left-[12px]'}`}>
