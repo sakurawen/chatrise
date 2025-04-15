@@ -268,3 +268,7 @@ html,body{
 .resize-cursor{
   @apply select-none cursor-col-resize;
 }
+
+path{
+  color: currentColor;
+}

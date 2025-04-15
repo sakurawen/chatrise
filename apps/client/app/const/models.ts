@@ -1,4 +1,4 @@
-interface ModelProvider {
+export interface ModelProvider {
   name: string
   icon?: React.ReactNode
   models: Model[]
@@ -7,7 +7,7 @@ interface ModelProvider {
 /**
  * format: company: name desc
  */
-interface Model {
+export interface Model {
   name: string
   apiHost: string
   desc?: string

@@ -7,16 +7,16 @@ export interface ChatMessage {
   content: string
   role: string
   status: string
-  modalParams?: Record<string, any>
+  modelParams?: Record<string, any>
   attachments?: unknown[]
-  modal: string
+  model: string
   createAt: Date
 }
 
 export interface ChatThread {
   id: string
   title: string
-  modal: string
+  model: string
   createAt: Date
   updatedAt?: Date
   lastMessageAt?: Date
@@ -29,6 +29,6 @@ export const db = new Dexie('chatrise') as Dexie & {
 };
 
 db.version(1).stores({
-  threads: 'id,threadId,content,role,status,modal,createAt',
-  messages: 'id,title,modal,updateAt,lastMessageAt,status',
+  threads: 'id,threadId,content,role,status,model,createAt',
+  messages: 'id,title,model,updateAt,lastMessageAt,status',
 });

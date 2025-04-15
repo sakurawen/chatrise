@@ -6,28 +6,36 @@ import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { sidebarEnableAtom } from '~/atoms/layout';
 import { Button } from '~/components/ui/button';
+import { ScrollArea } from '~/components/ui/scroll-area';
 import { Search } from '~/components/ui/search';
 import { useSidebarWidth } from '~/hooks/use-sidebar-width';
 import { cn } from '~/lib/utils';
 
-export interface SidebarProps {
+export interface SidebarProps extends PropsWithChildren {
   className?: string
 }
 
 export function Sidebar(props: SidebarProps) {
-  const { className } = props;
+  const { className, children } = props;
 
   return (
     <SidebarContainer>
-      <div className={cn('sidebar h-full pb-10', className)}>
-        <div data-tauri-drag-region className='h-[51px] pl-24' />
-        <div className='px-3'>
-          <Search placeholder='搜索' />
+      <div className={cn('sidebar h-full pb-10 flex flex-col', className)}>
+        <div>
+          <div data-tauri-drag-region className='h-[51px] pl-24' />
+          <div className='px-3'>
+            <Search placeholder='搜索' />
+          </div>
         </div>
-        <div className='absolute bottom-2 left-2'>
-          <Button variant='ghost' size='icon'>
-            <Icon icon='f7:gear' className='size-icon' />
-          </Button>
+        <div className='flex-1'>
+          <ScrollArea className='h-full px-2.5'>
+            {children}
+          </ScrollArea>
+          <div className='absolute bottom-2 left-2'>
+            <Button variant='ghost' size='icon'>
+              <Icon icon='f7:gear' className='size-icon' />
+            </Button>
+          </div>
         </div>
       </div>
     </SidebarContainer>
