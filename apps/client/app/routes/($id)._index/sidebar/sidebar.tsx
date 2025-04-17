@@ -1,9 +1,10 @@
 import type { PropsWithChildren } from 'react';
 import { Icon } from '@iconify/react';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { clamp } from 'lodash-es';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
 import { sidebarEnableAtom } from '~/atoms/layout';
 import { Button } from '~/components/ui/button';
 import { ScrollArea } from '~/components/ui/scroll-area';
@@ -45,8 +46,15 @@ export function Sidebar(props: SidebarProps) {
 function SidebarContainer({ children }: PropsWithChildren) {
   const [pointerDown, setPointerDown] = useState(false);
   const pointerDownRef = useRef(false);
-  const sidebarEnable = useAtomValue(sidebarEnableAtom);
+  const [sidebarEnable, setSidebarEnable] = useAtom(sidebarEnableAtom);
   const [width, setWidth] = useSidebarWidth();
+
+  useHotkeys('alt+b,meta+b', () => {
+    if (pointerDownRef.current) {
+      return;
+    }
+    setSidebarEnable(val => !val);
+  });
 
   useEffect(() => {
     function handlePointerMove(e: PointerEvent) {
