@@ -179,11 +179,11 @@
   --color-fills-quaternary:var(--files-quaternary);
   --color-fills-quinary:var(--files-quinary);
   /* text */
-  --text-primary:var(--text-primary);
-  --text-secondary:var(--text-secondary);
-  --text-tertiary:var(--text-tertiary);
-  --text-quaternary:var(--text-quaternary);
-  --text-quinary:var(--text-quinary);
+  --color-primary:var(--text-primary);
+  --color-secondary:var(--text-secondary);
+  --color-tertiary:var(--text-tertiary);
+  --color-quaternary:var(--text-quaternary);
+  --color-quinary:var(--text-quinary);
   /* materials */
   --color-material-ultrathick:var(--material-ultrathick);
   --color-material-thick:var(--material-thick);
@@ -210,9 +210,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);

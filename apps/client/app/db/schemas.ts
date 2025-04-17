@@ -21,6 +21,7 @@ export interface ChatThread {
   updatedAt?: Date
   lastMessageAt?: Date
   status: string
+  favorite: boolean
 }
 
 export const db = new Dexie('chatrise') as Dexie & {
@@ -30,5 +31,5 @@ export const db = new Dexie('chatrise') as Dexie & {
 
 db.version(1).stores({
   threads: 'id,threadId,content,role,status,model,createAt',
-  messages: 'id,title,model,updateAt,lastMessageAt,status',
+  messages: 'id,title,model,updateAt,lastMessageAt,status,favorite',
 });

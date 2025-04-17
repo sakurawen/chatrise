@@ -21,6 +21,17 @@ export function createThread(data = createDefaultThread()) {
   return db.threads.add(data);
 }
 
-export function deleteThread(id: string) {
+export async function deleteThread(id: string) {
   return db.threads.delete(id);
+}
+
+export async function favoriteThread(id: string) {
+  const thread = await db.threads.get(id);
+  if (!thread) {
+    return;
+  }
+  if (thread.favorite) {
+    return db.threads.update(thread.id, { favorite: false });
+  }
+  return db.threads.update(thread.id, { favorite: true });
 }
