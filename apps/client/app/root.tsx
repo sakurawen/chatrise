@@ -25,11 +25,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
           name='viewport'
           content='width=device-width, initial-scale=1'
         />
-        {import.meta.env.VITE_REACT_DEVTOOLS === 'enable' && import.meta.env.DEV
-          ? (
-              <script src='http://localhost:8097'></script>
-            )
-          : null}
+        <script
+          crossOrigin='anonymous'
+          src='//unpkg.com/react-scan/dist/auto.global.js'
+        />
         <Meta />
         <Links />
       </head>
