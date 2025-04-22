@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
-    "@radix-ui/react-collapsible": "^1.1.4",
-    "@radix-ui/react-dropdown-menu": "^2.1.7",
-    "@radix-ui/react-scroll-area": "^1.2.4",
+    "@radix-ui/react-collapsible": "^1.1.7",
+    "@radix-ui/react-dropdown-menu": "^2.1.11",
+    "@radix-ui/react-scroll-area": "^1.2.5",
     "@radix-ui/react-slot": "^1.2.0",
-    "@radix-ui/react-tooltip": "^1.2.0",
+    "@radix-ui/react-tooltip": "^1.2.3",
     "@react-router/node": "^7.5.1",
     "@tauri-apps/api": "^2.5.0",
     "@tauri-apps/plugin-opener": "^2.2.6",
@@ -34,7 +34,7 @@
     "lodash-es": "^4.17.21",
     "markdown-it": "^14.1.0",
     "motion": "^12.7.4",
-    "openai": "^4.95.0",
+    "openai": "^4.95.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hotkeys-hook": "^4.6.2",
@@ -42,7 +42,7 @@
     "react-router": "^7.5.1",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.2.0",
-    "tw-animate-css": "^1.2.5"
+    "tw-animate-css": "^1.2.8"
   },
   "devDependencies": {
     "@chatrise/eslint-config": "workspace:*",
@@ -56,12 +56,12 @@
     "@types/lodash-es": "^4.17.12",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "babel-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
-    "eslint-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
+    "babel-plugin-react-compiler": "19.1.0-rc.1",
+    "eslint-plugin-react-compiler": "19.1.0-rc.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "tailwindcss": "^4.1.4",
     "typescript": "~5.6.3",
-    "vite": "^6.3.1",
+    "vite": "^6.3.2",
     "vite-plugin-babel": "^1.3.0",
     "vite-tsconfig-paths": "^5.1.4"
   }

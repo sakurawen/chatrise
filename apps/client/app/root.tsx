@@ -25,10 +25,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           name='viewport'
           content='width=device-width, initial-scale=1'
         />
-        <script
-          crossOrigin='anonymous'
-          src='//unpkg.com/react-scan/dist/auto.global.js'
-        />
         <Meta />
         <Links />
       </head>
