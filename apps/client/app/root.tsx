@@ -3,7 +3,7 @@ import { icons } from '@iconify-json/f7';
 import { addCollection } from '@iconify/react';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 import '~/db';
-import './app.css';
+import '~/app.css';
 
 addCollection(icons);
 
@@ -28,7 +28,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='default-cursor'>
         {children}
         <ScrollRestoration />
         <Scripts />

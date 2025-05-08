@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { Icon } from '@iconify/react';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
+import { useAtom } from 'jotai';
 import { clamp } from 'lodash-es';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
@@ -9,15 +10,41 @@ import { sidebarEnableAtom } from '~/atoms/layout';
 import { Button } from '~/components/ui/button';
 import { ScrollArea } from '~/components/ui/scroll-area';
 import { Search } from '~/components/ui/search';
+import { APP_NAME } from '~/const/app';
 import { useSidebarWidth } from '~/hooks/use-sidebar-width';
+import { tauriStore } from '~/lib/tauri-store';
 import { cn } from '~/lib/utils';
 
 export interface SidebarProps extends PropsWithChildren {
   className?: string
 }
-
 export function Sidebar(props: SidebarProps) {
   const { className, children } = props;
+
+  async function handleOpenSettings() {
+    const position = await tauriStore.get<{ x: number, y: number }>('settings-position');
+    const settingWindow = new WebviewWindow('settings', {
+      width: 600,
+      height: 400,
+      url: '/settings',
+      title: `${APP_NAME} Settings`,
+      minimizable: false,
+      maximizable: false,
+      minHeight: 400,
+      minWidth: 600,
+      maxWidth: 800,
+      maxHeight: 600,
+      x: position?.x,
+      y: position?.y,
+    });
+    settingWindow.listen('tauri://move', async () => {
+      const pos = await settingWindow.innerPosition();
+      await tauriStore.set('settings-position', {
+        x: pos.x,
+        y: pos.y,
+      });
+    });
+  }
 
   return (
     <SidebarContainer>
@@ -33,7 +60,7 @@ export function Sidebar(props: SidebarProps) {
             {children}
           </ScrollArea>
           <div className='absolute bottom-2 left-2'>
-            <Button variant='ghost' size='icon'>
+            <Button variant='ghost' size='icon' onClick={handleOpenSettings}>
               <Icon icon='f7:gear' className='size-icon' />
             </Button>
           </div>
